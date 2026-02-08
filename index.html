@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Supabase OTP Auth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <div class="backdrop">
+      <span class="orb orb-one"></span>
+      <span class="orb orb-two"></span>
+      <span class="orb orb-three"></span>
+    </div>
+
+    <main class="page">
+      <section class="promo">
+        <div class="brand">
+          <div class="logo">S</div>
+          <div>
+            <div class="brand-title">Supabase Auth</div>
+            <div class="brand-sub">OTP signup, modern login</div>
+          </div>
+        </div>
+        <h1>Professional signup flow with email OTP.</h1>
+        <p>
+          Streamlined signup and login UI, wired to your hosted backend for
+          secure auth.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Backend: https://supabase-auth-seue.onrender.com</span>
+          <span class="pill">Email OTP + Password</span>
+        </div>
+        <div class="feature-list">
+          <div class="feature">
+            <span>Stepwise verification</span>
+            <small>Send, verify, and set password in one flow.</small>
+          </div>
+          <div class="feature">
+            <span>Clean session preview</span>
+            <small>Inspect the latest API response instantly.</small>
+          </div>
+          <div class="feature">
+            <span>Hosted API ready</span>
+            <small>Works with Render backend out of the box.</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="auth-card">
+        <div class="tabs">
+          <button class="tab active" data-tab="signup">Sign up</button>
+          <button class="tab" data-tab="login">Login</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-signup">
+          <label class="field">
+            <span>Email</span>
+            <input id="signup-email" type="email" placeholder="you@example.com" />
+          </label>
+          <label class="field">
+            <span>Username</span>
+            <input id="signup-username" type="text" placeholder="yourname" />
+          </label>
+
+          <div class="stepper">
+            <div class="step active" data-step="1">Send code</div>
+            <div class="step" data-step="2">Verify</div>
+            <div class="step" data-step="3">Set password</div>
+          </div>
+
+          <div class="step-block">
+            <div>
+              <h3>Send OTP</h3>
+              <p>We will email a one-time code to your inbox.</p>
+            </div>
+            <button id="send-otp">Send code</button>
+            <div class="status" id="send-otp-status"></div>
+          </div>
+
+          <div class="step-block">
+            <div>
+              <h3>Verify code</h3>
+              <p>Paste the 6-digit code you received.</p>
+            </div>
+            <label class="field">
+              <span>OTP Code</span>
+              <input id="verify-otp" type="text" placeholder="123456" />
+            </label>
+            <button id="verify-otp-btn">Verify</button>
+            <div class="status" id="verify-otp-status"></div>
+          </div>
+
+          <div class="step-block">
+            <div>
+              <h3>Set password</h3>
+              <p>Create a password to finish signup.</p>
+            </div>
+            <label class="field">
+              <span>Password</span>
+              <input id="set-password" type="password" placeholder="Create a strong password" />
+            </label>
+            <button id="set-password-btn">Create account</button>
+            <div class="status" id="set-password-status"></div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="tab-login">
+          <label class="field">
+            <span>Email</span>
+            <input id="login-email" type="email" placeholder="you@example.com" />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input id="login-password" type="password" placeholder="Your password" />
+          </label>
+          <button id="login-btn">Login</button>
+          <div class="status" id="login-status"></div>
+        </div>
+      </section>
+    </main>
+
+    <section class="session-card">
+      <div>
+        <h2>Session Preview</h2>
+        <p>Latest API response payload.</p>
+      </div>
+      <pre id="session-output">{}</pre>
+    </section>
+
+    <footer class="footer">
+      <div>Supabase OTP frontend for your hosted API.</div>
+      <div class="tiny">Tip: use the same email for all signup steps.</div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

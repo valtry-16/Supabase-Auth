@@ -122,12 +122,12 @@ app.post("/verify-otp", async (req, res) => {
    ========================= */
 app.post("/set-password", async (req, res) => {
   try {
-    const { email, password } = getBody(req);
+    const { email, password, username } = getBody(req);
 
-    if (!email || !password) {
+    if (!email || !password || !username) {
       return res.status(400).json({
         success: false,
-        message: "Email and password are required",
+        message: "Email, username, and password are required",
       });
     }
 
@@ -157,6 +157,19 @@ app.post("/set-password", async (req, res) => {
         success: false,
         message: error.message,
       });
+    }
+
+    if (data?.user?.id) {
+      const { error: profileError } = await userClient
+        .from("profiles")
+        .upsert({ id: data.user.id, username }, { onConflict: "id" });
+
+      if (profileError) {
+        return res.status(400).json({
+          success: false,
+          message: profileError.message,
+        });
+      }
     }
 
     delete tempSessions[email];
